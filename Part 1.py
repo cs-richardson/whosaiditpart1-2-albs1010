@@ -3,7 +3,7 @@
 
 '''This code recieves a text and outputs each word in the code. If there are
 repeating words, it would add 1 to the already existing word (making the amount
-to). At the end, it will output the total amount of words in the text.
+two and so on). At the end, it will output the total amount of words in the text.
 '''
 
 #This function removes punctuation, change letters to lowercase, and check if its string.
@@ -28,28 +28,37 @@ def get_counts(document):
     every_word = text.split()
     
 
-#This loop, after each word is stored in a list, adds everything into a dictionary with the amount of that word repeated
+#This loop, adds everything into a dictionary with the amount of that word repeated. It also counts the amount of words
 
 
     for i in every_word:
         i = normalize(i)
-        if i in word:
-            word[i] = word[i] + 1
+        if i == "":
+            continue
         else:
-            word[i] = 1
-
-#The code below prints each element in the dictionary as well as the total amount of words
+            if i in word:
+                word[i] = word[i] + 1
+                count = count + 1
+            else:
+                word[i] = 1
+                count = count +1
             
-    for x in word:
-        if x != "":
-            print (x + ": " + str(word[x]))
-            count = count + word[x]
 
-    print("Total: " + str(count))
+    word["_total"] = count
+
+    return word
 
     input_file.close()
+    
+#This loops through the dictionary and prints the elements inside
 
+william = get_counts("hamlet-short.txt")
+jane = get_counts("pride-and-prejudice-short.txt")
 
-get_counts("hamlet-short.txt")
-get_counts("pride-and-prejudice-short.txt")
+for x in william:
+    print (x + ": " + str(william[x]))
+
+for x in jane:
+    print (x + ": " + str(jane[x]))       
+
     
