@@ -52,8 +52,8 @@ def get_counts(document):
     
 #This loops through the dictionary and prints the elements inside
 
-william = get_counts("hamlet-short.txt")
-jane = get_counts("pride-and-prejudice-short.txt")
+william = get_counts("hamlet.txt")
+jane = get_counts("pride-and-prejudice.txt")
 
 for x in william:
     print (x + ": " + str(william[x]))
